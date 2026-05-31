@@ -322,3 +322,75 @@ Does NOT interrupt existing JS
   });
 
 })();
+
+
+
+// =========================
+// IMAGE NAVIGATION
+// =========================
+
+let currentImages = [];
+let currentIndex = 0;
+
+// Save current image list when opening
+const originalOpenImage = openImage;
+
+openImage = function(src){
+
+    currentImages = Array.from(
+        document.querySelectorAll(".modal img")
+    );
+
+    currentIndex = currentImages.findIndex(
+        img => img.src === src
+    );
+
+    originalOpenImage(src);
+};
+
+function nextImage(){
+
+    if(currentImages.length === 0) return;
+
+    currentIndex =
+        (currentIndex + 1) % currentImages.length;
+
+    document.getElementById("fullImage").src =
+        currentImages[currentIndex].src;
+
+    document.getElementById("downloadBtn").href =
+        currentImages[currentIndex].src;
+}
+
+function prevImage(){
+
+    if(currentImages.length === 0) return;
+
+    currentIndex =
+        (currentIndex - 1 + currentImages.length)
+        % currentImages.length;
+
+    document.getElementById("fullImage").src =
+        currentImages[currentIndex].src;
+
+    document.getElementById("downloadBtn").href =
+        currentImages[currentIndex].src;
+}
+
+document.addEventListener("keydown", function(e){
+
+    const viewer =
+        document.getElementById("imageViewer");
+
+    if(!viewer || viewer.style.display !== "flex"){
+        return;
+    }
+
+    if(e.key === "ArrowRight"){
+        nextImage();
+    }
+
+    if(e.key === "ArrowLeft"){
+        prevImage();
+    }
+});
