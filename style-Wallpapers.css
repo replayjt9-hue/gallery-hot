@@ -978,3 +978,73 @@ body{
 
   transform:translateY(0);
 }
+
+
+/* =========================
+HD / 4K PREVIEW EFFECT
+========================= */
+
+#fullImage{
+
+  max-width:95%;
+  max-height:90vh;
+
+  object-fit:contain;
+
+  image-rendering:auto;
+
+  filter:
+    contrast(1.08)
+    saturate(1.08)
+    brightness(1.02)
+    sharpen(1);
+
+  transform:translateZ(0);
+
+  transition:0.3s ease;
+}
+
+
+
+#fullImage{
+
+  max-width:95%;
+  max-height:90vh;
+
+  object-fit:contain;
+
+  filter:
+    contrast(1.1)
+    saturate(1.15)
+    brightness(1.03);
+
+  box-shadow:
+    0 0 30px rgba(255,255,255,.15),
+    0 0 80px rgba(255,255,255,.08);
+
+  transition:all .3s ease;
+}
+
+
+
+
+.nav-btn{
+    position:fixed;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:9999;
+    border:none;
+    cursor:pointer;
+    font-size:40px;
+    padding:10px 15px;
+    background:rgba(0,0,0,.6);
+    color:#fff;
+}
+
+.prev-btn{
+    left:20px;
+}
+
+.next-btn{
+    right:20px;
+}
